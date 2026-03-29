@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>4.0.5</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.example</groupId>
+	<artifactId>springbootWithZk</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name/>
+	<description/>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>21</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<zk.version>10.0.0-jakarta</zk.version>
+	</properties>
+	<dependencies>
+		<dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-webmvc</artifactId>
+	    </dependency>
+	
+	    <dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-webmvc-test</artifactId>
+	      <scope>test</scope>
+	    </dependency>
+		
+		<!-- zul config -->
+		<!-- If you want to use data binding, include this -->
+		<dependency>
+			<groupId>org.zkoss.zk</groupId>
+			<artifactId>zkbind</artifactId>
+			<version>${zk.version}</version>
+		</dependency>
+		<!-- end zul config -->
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!--<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>-->
+			
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<release>${java.version}</release>
+				</configuration>
+			</plugin>
+
+			<!-- สร้าง jar ที่รันได้ -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>com.example.springbootWithZk.SpringbootWithZkApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			
+			<!-- ทำหน้าที่ copy library มาใส่ในโฟลเดอร์ lib -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<includeScope>runtime</includeScope>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>

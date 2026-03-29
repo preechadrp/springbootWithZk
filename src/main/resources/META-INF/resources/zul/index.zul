@@ -1,0 +1,12 @@
+<?page title="Auto Generated index.zul"?>
+<zk>
+	<div id="div01" apply="com.example.springbootWithZk.controllers.Index">
+		<vbox>
+			<hbox>
+				<label value="You are using: ${desktop.webApp.version}" />
+				<button id="btnClear" label="clear" />
+			</hbox>
+		</vbox>
+		<div id="divMsg" sclass="my-scrollable-box" />
+	</div>
+</zk>
