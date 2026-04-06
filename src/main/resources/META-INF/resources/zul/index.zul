@@ -1,6 +1,6 @@
 <?page title="Auto Generated index.zul"?>
 <zk>
-	<div id="div01" apply="com.example.springbootWithZk.controllers.Index">
+	<div id="div01" apply="com.example.springbootWithZk.composer.Index">
 		<vbox>
 			<hbox>
 				<label value="You are using: ${desktop.webApp.version}" />
